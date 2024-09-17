@@ -1,0 +1,140 @@
+﻿@page "~/list-edit/{id}"
+@model LhDev.ShoppingLister.Pages.ListEditModel
+@{
+    ViewData["Title"] = "Edit List - " + Model.List.Name;
+}
+
+<h2>@Model.List.Name</h2>
+
+@if (!string.IsNullOrEmpty(Model.ProblemText))
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @Model.ProblemText
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div id="theItemList" class="d-flex">
+    @foreach (var item in Model.Items)
+    {
+        <button type="button" onclick="listEditHandler._doEditItem(@item.Id)" class="btn btn-link">@item.Name &nbsp;<i class="bi bi-pen"></i></button>
+    }
+</div>
+
+
+<h2>
+    Shared With
+    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="bi bi-person-plus-fill"></i></button>
+</h2>
+
+<div id="theUserList" class="d-flex">
+    @foreach (var item in Model.SharedUsers)
+    {
+        <button type="button" onclick="listEditHandler._doSharedUser(@item.Id)" class="btn btn-link">@item.Name &nbsp;<i class="bi bi-pen"></i></button>
+    }
+</div>
+
+
+<!-- Share With Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addUserModalLabel">Share With</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 d-flex">
+                    @foreach (var item in Model.OtherUsers)
+                    {
+                        <form method="post" action="~/web-api/list/share">
+                            <input type="hidden" name="listId" value="@Model.List.Id">
+                            <input type="hidden" name="userId" value="@item.Id">
+                            <button type="submit" class="btn btn-link">@item.Name &nbsp;<i class="bi bi-plus"></i></button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Item Modal -->
+<div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editItemModalLabel">Edit Item</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="~/web-api/item/edit" id="editItemForm">
+                    <div class="mb-3">
+                        <label for="listName" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="itemName" name="itemName">
+                        <input type="hidden" class="item-id-value" name="itemId">
+                        <input type="hidden" class="list-id-value" name="listId">
+                        <input type="hidden" id="origItemName" name="origItemName">
+                    </div>
+                    <button type="submit" class="btn btn-primary float-end">Rename</button>
+                </form>
+                <form method="post" action="~/web-api/item/delete" id="deleteItemForm">
+                    <input type="hidden" class="item-id-value" name="itemId">
+                    <input type="hidden" class="list-id-value" name="listId">
+                    <button type="submit" class="btn btn-danger float-start">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Shared User Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteUserModalLabel">Delete Share</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="~/web-api/list/unshare">
+                <input type="hidden" class="user-id-value" name="userId">
+                <input type="hidden" class="list-id-value" name="listId">
+                <div class="modal-footer d-flex">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Head
+{
+    <link rel="stylesheet" href="~/lib/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css" asp-append-version="true" />
+}
+
+@section Scripts
+{
+    <script src="~/lib/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script src="~/lib/jquery-ui-1.13.3/jquery-ui.min.js"></script>
+    <script src="~/lib/bootstrap-icons-1.11.3/font/bootstrap-icons.json"></script>
+    <script src="~/js/list-edit.js?@Model.UnixTime"></script>
+    <script>
+        $(function () {
+            const items = [
+                @foreach (var item in Model.Items) { <text> 
+                    { id: @item.Id, name: "@item.Name.Replace("\"", "\\\"")" }, </text> }
+            ];
+            const sharedUsers = [
+                @foreach (var item in Model.SharedUsers) { <text> 
+                    { id: @item.Id, name: "@item.Name.Replace("\"", "\\\"")" }, </text> }
+            ];
+            const otherUsers = [
+                @foreach (var item in Model.OtherUsers) { <text> 
+                    { id: @item.Id, name: "@item.Name.Replace("\"", "\\\"")" }, </text> }
+            ];
+            listEditHandler.init(@Model.List.Id, items, sharedUsers, otherUsers);
+        });
+    </script>
+}

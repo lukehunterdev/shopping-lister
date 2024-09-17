@@ -1,0 +1,12 @@
+﻿:root {
+    --bg-col: #eee;
+    --bg-col-rgb: 238, 238, 238;
+    --text-col: #111;
+    --text-col-rgb: 17, 17, 17;
+    --light-text-col: #444;
+    --light-text-col-rgb: 68, 68, 68;
+    --form-bg-col: #fff;
+    --form-text-col: #000;
+    --form-border-col: #333;
+    --clean-icon: url('../assets/icons/clean-dark.svg');
+}

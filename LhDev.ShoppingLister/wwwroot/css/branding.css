@@ -1,0 +1,10 @@
+:root {
+    --purple-light: #7840ff;
+    --purple-light-rgb: 120, 64, 255;
+    --purple-dark: #34087f;
+    --purple-dark-rgb: 52, 8, 127;
+    --green-light: #c7ff40;
+    --green-light-rgb: 199, 255, 64;
+    --green-dark: #537f08;
+    --green-dark-rgb: 83, 127, 8;
+}

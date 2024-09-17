@@ -1,0 +1,1 @@
+ALTER TABLE Item ADD Usage   integer default 0 not null;

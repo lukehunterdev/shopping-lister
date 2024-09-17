@@ -1,0 +1,34 @@
+﻿@page "{id}"
+@model LhDev.ShoppingLister.Pages.ListModel
+@{
+    ViewData["Title"] = "List - " + Model.List.Name;
+}
+
+<div class="d-flex justify-content-between">
+    <h2>@Model.List.Name</h2>
+    <button type="button" id="cleanListButton" class="list-clean" alt="Clean List">&nbsp;</button>
+</div>
+
+<ul id="theList"></ul>
+
+<br/>
+
+<div class="d-flex justify-content-between new-item-group">
+    <input id="newItemTextbox" class="form-control" type="text" placeholder="Item">
+    <button id="createItemButton" class="btn btn-primary">Add</button>
+</div>
+<div id="newItemsList" class="d-flex"></div>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script src="~/lib/jquery-ui-1.13.3/jquery-ui.min.js"></script>
+    <script src="~/js/list.js?@Model.UnixTime"></script>
+    <script>
+        $(function () {
+            //$("#theList").sortable();
+
+            listWsHandler.init(@Model.List.Id);
+        });
+    </script>
+}

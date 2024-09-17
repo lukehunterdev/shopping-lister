@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shopping Lister</title>
+    <link rel="stylesheet" href="~/lib/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/assets/icons/icon-64.png" sizes="64x64" />
+    <link rel="icon" type="image/png" href="~/assets/icons/icon-32.png" sizes="32x32" />
+    <link rel="manifest" href="~/manifest.json" />
+    @await RenderSectionAsync("Head", required: false)
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Shopping Lister</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+        @* <div class="row"> *@
+        @*     <nav class="mdkb-nav col-md-2 mb-2"> *@
+        @*         @await RenderSectionAsync("Navigation", required: false) *@
+        @*     </nav> *@
+        @*     <main role="main" class="mdkb-content col-md-8 mb-8"> *@
+        @*         @RenderBody() *@
+        @*     </main> *@
+        @*     <nav class="mdkb-anchors col-md-2 mb-2"> *@
+        @*         @await RenderSectionAsync("Anchors", required: true) *@
+        @*     </nav> *@
+        @* </div> *@
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2024 - LhDev.ShoppingLister - <a asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/lib/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

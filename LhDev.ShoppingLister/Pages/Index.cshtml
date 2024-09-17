@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>
+    Lists
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addListModal">+</button>
+</h2>
+
+<!-- Modal -->
+<form method="post" action="~/web-api/list">
+    <div class="modal fade" id="addListModal" tabindex="-1" aria-labelledby="addListModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addListModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="listName" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="listName" name="listName">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<ul>
+    @foreach (var list in Model.Lists)
+    {
+        <li><a href="~/list/@list.Id">@list.Name</a> - <a href="~/list-edit/@list.Id">EDIT</a></li>
+    }
+</ul>
+
+
+<h2>Lists Shared with Me</h2>
+<ul>
+    @foreach (var list in Model.SharedLists)
+    {
+        <li><a href="~/list/@list.Id">@list.Name</a></li>
+    }
+</ul>

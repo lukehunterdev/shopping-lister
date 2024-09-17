@@ -1,0 +1,182 @@
+﻿:root {
+    --nav-height: 4rem;
+    --footer-height: 2rem;
+    --dark-check: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23222' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    --light-check: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23eee' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+body {
+    /*padding-top: var(--nav-height);*/
+    /* padding-bottom: var(--footer-height); */
+}
+
+body > footer {
+    height: 2rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+#theList {
+    padding-left: 0;
+}
+
+#theList li {
+    list-style: none;
+}
+
+#theItem {
+    width: 50%;
+}
+
+#itemAddButton {
+    width: 10%;
+}
+
+.container {
+    padding: 0;
+}
+
+.container > * {
+    margin: 0 1rem;
+}
+
+.list-clean {
+    width: 3rem;
+    height: 2rem;
+    background-size: cover;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    margin: 0.3rem 0 1rem 1rem;
+}
+
+
+#theItemList {
+    position: inherit;
+    flex-wrap: wrap !important;
+    padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+#theItemList span {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+#newItemsList {
+    position: fixed;
+    bottom: 48px;
+    flex-wrap: wrap-reverse !important;
+    padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.new-item-group {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin: 0;
+    padding: 0 1rem 0.5rem 1rem;
+}
+
+#theList .form-check{
+    padding-left: 32px;
+}
+
+#theList .form-check-input {
+    margin-left: -32px;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+#theList .form-check-label {
+    font-size: 1.5rem;
+}
+
+.login.card {
+    margin: 1rem;
+}
+
+.login-page {
+    width: 576px;
+    /*margin: 1rem;*/
+}
+
+.login-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#createItemButton {
+    /*font-size: 1.5rem;*/
+    font-weight: 900;
+    padding: 0 0.5rem;
+    margin: 0 0 0 0.5rem;
+    vertical-align: middle;
+}
+
+
+.login-container .footer {
+    margin: 0 1rem;
+}
+
+
+@media only screen and (min-width: 576px) {
+    .login-page {
+        width: 100%;
+    }
+
+    #newItemsList, .new-item-group {
+        max-width: 540px;
+        margin: 0 0rem;
+    }
+
+    .new-item-group {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .login-page {
+        width: 100%;
+    }
+
+    #newItemsList, .new-item-group {
+        max-width: 720px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .login-page {
+        width: 100%;
+    }
+
+    #newItemsList, .new-item-group {
+        max-width: inherit;
+    }
+
+    #newItemsList {
+        position: inherit;
+        flex-wrap: wrap !important;
+    }
+
+    .new-item-group {
+        position: inherit;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .login-page {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .login-page {
+        width: 100%;
+    }
+}
