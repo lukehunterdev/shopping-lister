@@ -1,5 +1,4 @@
 using HealthChecks.UI.Client;
-using Idox.Prototype.DmsAgent.HealthChecks;
 using LhDev.ShoppingLister.Middleware;
 using LhDev.ShoppingLister.SettingsModels;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -7,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using LhDev.ShoppingLister.Services;
 using LhDev.ShoppingLister.Exceptions;
+using LhDev.ShoppingLister.HealthChecks;
 
 namespace LhDev.ShoppingLister;
 

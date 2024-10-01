@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Idox.Prototype.DmsAgent.HealthChecks;
+namespace LhDev.ShoppingLister.HealthChecks;
 
 public class TestHealthCheck :IHealthCheck
 {
