@@ -10,9 +10,9 @@ public interface IJwtSettings
 
 public class JwtSettings //: IJwtSettings
 {
-    public string Issuer => "https://idoxgroup.com/";
+    public string Issuer => "https://acme.com/";
 
-    public string Audience => "https://idoxgroup.com/";
+    public string Audience => "https://acme.com/";
 
     public string Key { get; set; } = null!;
 
